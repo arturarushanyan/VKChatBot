@@ -1,0 +1,14 @@
+{
+  "name": "vkchatbot",
+  "version": "1.0.0",
+  "description": "Basic Chatbot for VK",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arthur Arushanyan",
+  "license": "ISC",
+  "dependencies": {
+    "vk-io": "^3.1.5"
+  }
+}
