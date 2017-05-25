@@ -14,3 +14,11 @@ vk.longpoll.start()
     });
 
 
+vk.longpoll.on('message', (msg) => {
+    if(msg.flags.indexOf('outbox') != -1){
+        return;
+    }
+    console.log(msg);
+    msg.send(msg.text);
+
+});
