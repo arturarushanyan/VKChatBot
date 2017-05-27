@@ -45,7 +45,14 @@ vk.longpoll.on('message', (msg) => {
     } else if(parsedMessage[0] === "get" && parsedMessage[1] === "all"){
         mongoWord.getAll((err,doc) => {
             if (!err) {
-                msg.send(`all existing translations are ${doc.translation}`)
+                let newDoc = doc.map((prop)=>{
+                    return prop.word +" "+prop.translation;
+                });
+                console.log(newDoc);
+
+                msg.send("all existing translations are " + newDoc);
+            } else {
+                throw err;
             }
         })
     }

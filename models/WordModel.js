@@ -39,7 +39,7 @@ const mongoWord = {
         });
     },
 
-    getAll: () => {
+    getAll: (next) => {
         WordModel.find({},null,{lean: true},(err,result) => {
             if (err){
                 throw err;
