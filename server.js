@@ -36,11 +36,17 @@ vk.longpoll.on('message', (msg) => {
     if(parsedMessage[0] === "add"){
         mongoWord.addWord(message);
         console.log(message);
-    } else if(parsedMessage[0] === "get" && parsedMessage[0] !== "all"){
+    } else if(parsedMessage[0] === "get" && parsedMessage[1] !== "all"){
         mongoWord.getWord(message, (err, doc) => {
             console.log(doc);
             if (!err) msg.send(`your word is ${doc.translation}`)
         });
+    } else if(parsedMessage[0] === "get" && parsedMessage[1] === "all"){
+        mongoWord.getAll((err,doc) => {
+            if (!err) {
+                msg.send(`all existing translations are ${doc.translation}`)
+            }
+        })
     }
 
     // msg.send("your message is: "+msg.text);
