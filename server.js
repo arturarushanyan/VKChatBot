@@ -27,14 +27,15 @@ vk.longpoll.on('message', (msg) => {
     if(msg.flags.indexOf('outbox') !== -1){
         return;
     }
-
-    let parsedMessage = msg.text.split(" ");
+    console.log(msg);
+    let parsedMessage = msg.text.toLowerCase().split(" ");
     let message = {
         word: parsedMessage[1],
         translation: parsedMessage[2]
     };
     if(parsedMessage[0] === "add"){
         mongoWord.addWord(message);
+        msg.send('Your Word added');
         console.log(message);
     } else if(parsedMessage[0] === "get" && parsedMessage[1] !== "all"){
         mongoWord.getWord(message, (err, doc) => {
